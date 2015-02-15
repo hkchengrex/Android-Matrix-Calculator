@@ -140,19 +140,21 @@
                 android:layout_height="wrap_content"
                 android:text="Z"
                  android:layout_weight="1"  />
-           <Button
-                android:id="@+id/AddN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="&amp;"
-                 android:layout_weight="1"  />
-          <Button
+
+                  <Button
                 android:id="@+id/AddP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="^"
                  android:layout_weight="1"  />
-           </LinearLayout>
+
+                  <Button
+                       android:id="@+id/AddN"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="&amp;"
+                        android:layout_weight="1"  />
+              </LinearLayout>
            
              <LinearLayout
                  android:layout_width="match_parent"
