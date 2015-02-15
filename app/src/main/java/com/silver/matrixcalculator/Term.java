@@ -33,7 +33,7 @@ public class Term{
                     tmp=tmp + String.valueOf(number[0]);
                 }
             }else{
-                tmp = tmp + String.valueOf(number[0]);
+                tmp = tmp + String.valueOf(Math.abs(number[0]));
             }
             for (int i=1;i<4;i++){
                 if (number[i]!=0){

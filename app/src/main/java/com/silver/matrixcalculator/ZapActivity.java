@@ -184,40 +184,35 @@ public class ZapActivity extends ActionBarActivity implements
 			AddX.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					focus.setText(focus.getText().toString()+'x');
-					focus.setSelection(focus.length());
+                    myAppend('x');
 				}
 			});
 			
 			AddY.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					focus.setText(focus.getText().toString()+'y');
-					focus.setSelection(focus.length());
+                    myAppend('y');
 				}
 			});
 			
 			AddZ.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					focus.setText(focus.getText().toString()+'z');
-					focus.setSelection(focus.length());
+                    myAppend('z');
 				}
 			});
 
 			AddN.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					focus.setText(focus.getText().toString()+'&');
-					focus.setSelection(focus.length());
+                    myAppend('&');
 				}
 			});
 			
 			AddP.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
-					focus.setText(focus.getText().toString()+'^');
-					focus.setSelection(focus.length());
+                    myAppend('^');
 				}
 			});
 
@@ -488,7 +483,18 @@ public class ZapActivity extends ActionBarActivity implements
 			return rootView;
 		}
 	}
-	
+
+    public static void myAppend(char x){
+        int start = focus.getSelectionStart();
+        if (start==-1){
+            focus.setText(focus.getText().toString()+x);
+        }else{
+            String temp = focus.getText().toString().substring(start);
+            focus.setText(focus.getText().toString().substring(0,start)+x+temp);
+        }
+    focus.setSelection(start+1);
+    }
+
 	//Read from string to terms
 	public static Terms Read(String instring){
         String org = instring;
