@@ -131,10 +131,6 @@
         </TextView>
     </TableRow>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
         <TextView
             android:id="@+id/tagtext"
             android:layout_width="wrap_content"
@@ -142,11 +138,6 @@
             android:text="Numerical Value:"
             android:layout_column="0">
         </TextView>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
 
         <TextView
             android:id="@+id/num"
@@ -155,11 +146,6 @@
             android:text="Not calculated yet"
             android:layout_column="0"
             android:singleLine="false" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
 
         <Button
             android:layout_width="match_parent"
@@ -168,6 +154,5 @@
             android:id="@+id/button2"
             android:layout_column="0"
             android:layout_span="2" />
-    </TableRow>
 
 </TableLayout>

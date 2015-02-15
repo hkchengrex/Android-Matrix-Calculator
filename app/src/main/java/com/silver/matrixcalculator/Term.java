@@ -23,7 +23,7 @@ public class Term{
         public String toString(){
             String tmp = "+";
             if (number[0]<0){
-                tmp="";
+                tmp="-";
             }
             if (number[0]==0){
                 return "";

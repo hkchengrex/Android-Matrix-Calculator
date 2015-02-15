@@ -75,46 +75,6 @@ public class Terms extends ArrayList<Term> {
         return result;
     }
 
-    //Subtraction of 2 terms
-    public Terms Sub(Terms T2){
-        Terms result = new Terms();
-        Terms T1 = SumWithin(this);
-        T2 = SumWithin(T2);
-        boolean[] done1 = new boolean[T1.size()];
-        boolean[] done2 = new boolean[T2.size()];
-        int i1 = 0;
-        for (Term t1:T1){
-            int i2 = 0;
-            for (Term t2:T2){
-                if (!done2[i2]){
-                    if (t1.number[1]==t2.number[1] && t1.number[2]==t2.number[2] && t1.number[3]==t2.number[3])
-                    {
-                        Term newTerm = new Term(t1.number[0]-t2.number[0],t1.number[1],t1.number[2],t1.number[3]);
-                        result.add(newTerm);
-                        done1[i1] = true;
-                        done2[i2] = true;
-                    }
-                }
-                i2++;
-            }
-            i1++;
-        }
-
-        for (int i =0; i<T1.size(); i++){
-            if (!done1[i]){
-                result.add(T1.get(i));
-            }
-        }
-
-        for (int i =0; i<T2.size(); i++){
-            if (!done2[i]){
-                result.add(T2.get(i));
-            }
-        }
-
-        return result;
-    }
-
     //Multiply 2 terms, expanding them
     public Terms EMulti(Terms T2){
         Terms T1 = SumWithin(this);
@@ -129,6 +89,15 @@ public class Terms extends ArrayList<Term> {
         return result;
     }
 
+    public Terms Neg(){
+        Terms myTerms = new Terms();
+        for (Term T:this){
+            Term myTerm = T;
+            myTerm.number[0] = -1*myTerm.number[0];
+            myTerms.add(myTerm);
+        }
+        return myTerms;
+    }
 
     //Perform simplification of terms
     public static Terms SumWithin(Terms T){

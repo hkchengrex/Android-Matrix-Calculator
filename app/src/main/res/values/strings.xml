@@ -8,6 +8,6 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
-    <string name="help">Rules: \n 1. Put coefficient in the beginning, like 4xyz \n\n 2. Use ^ to indicate power, negative power is supported, like x^3 or y^-1 \n\n 3. Use  &amp; to separate term, like 4x&amp;+2y to represent 4x+2y \n\n4. For subtraction and multiplication, the operation starts from the current tab. Like, clicking the multiplication button on INPUT 2 will give the result of (INPUT2)(INPUT1) and vice versa \n\n5. If you love math, math will NOT love you! Math is a jerk, you know. \n\n Contact: holyrexcheng@gmail.com </string>
+    <string name="help">Rules: \n 1. Put coefficient in the beginning, like 4xyz \n\n 2. Use ^ to indicate power, negative power is supported, like x^3 or y^-1 \n\n 3. Use  &amp; to separate term, like 4x&amp;+2y to represent 4x+2y \n\n4. For subtraction and multiplication, the operation starts from the current tab. Like, clicking the multiplication button on INPUT 2 will give the result of (INPUT2)(INPUT1) and vice versa \n\n5. If you love math, math will NOT love you! Math is a jerk, you know. \n\n Contact: ZipZapRex@gmail.com </string>
 
 </resources>

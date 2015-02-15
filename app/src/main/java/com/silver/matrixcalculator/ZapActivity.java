@@ -71,24 +71,9 @@ public class ZapActivity extends ActionBarActivity implements
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
 			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
+                    .setText(mSectionsPagerAdapter.getPageTitle(i))
+                    .setTabListener(this));
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.zap, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-        return item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item);
 	}
 
 	@Override
@@ -266,9 +251,9 @@ public class ZapActivity extends ActionBarActivity implements
                             OM[n - 1][0][0].EMulti(OM[n - 1][1][1]).EMulti(OM[n - 1][2][2])
                                         .Sum(OM[n - 1][0][1].EMulti(OM[n - 1][1][2]).EMulti(OM[n - 1][2][0]))
                                         .Sum(OM[n - 1][0][2].EMulti(OM[n - 1][1][0].EMulti(OM[n - 1][2][1])))
-                                        .Sub(OM[n - 1][0][2].EMulti(OM[n - 1][1][1].EMulti(OM[n - 1][2][0])))
-                                        .Sub(OM[n - 1][0][1].EMulti(OM[n - 1][1][0].EMulti(OM[n - 1][2][2])))
-                                        .Sub(OM[n - 1][0][0].EMulti(OM[n - 1][1][2].EMulti(OM[n - 1][2][1]))).toString());
+                                        .Sum(OM[n - 1][0][2].EMulti(OM[n - 1][1][1].EMulti(OM[n - 1][2][0])).Neg())
+                                        .Sum(OM[n - 1][0][1].EMulti(OM[n - 1][1][0].EMulti(OM[n - 1][2][2])).Neg())
+                                        .Sum(OM[n - 1][0][0].EMulti(OM[n - 1][1][2].EMulti(OM[n - 1][2][1])).Neg()).toString());
 					}
 				});
             //Button for addition calculation
@@ -304,9 +289,9 @@ public class ZapActivity extends ActionBarActivity implements
                                 OM[1][i][j] = Read(string2[i][j]);
                                 //Add and output the matrix
                                 if (n==1) {
-                                    OM[2][i][j] = OM[0][i][j].Sub(OM[1][i][j]);
+                                    OM[2][i][j] = OM[0][i][j].Sum(OM[1][i][j].Neg());
                                 }else{
-                                    OM[2][i][j] = OM[1][i][j].Sub(OM[0][i][j]);
+                                    OM[2][i][j] = OM[1][i][j].Sum(OM[0][i][j].Neg());
                                 }
                                 RM[i][j].setText(OM[2][i][j].toString());
                             }
@@ -384,9 +369,9 @@ public class ZapActivity extends ActionBarActivity implements
                             }
                             //Decide the sign of cofactor
                             if ((i+k)%2!=0) {
-                                myTerms = T1.Sub(T2);
+                                myTerms = T1.Sum(T2.Neg());
                             }else{
-                                myTerms = T2.Sub(T1);
+                                myTerms = T2.Sum(T1.Neg());
                             }
                             OM[2][i][k] = myTerms;
                             RM[i][k].setText(myTerms.toString());
@@ -523,15 +508,16 @@ public class ZapActivity extends ActionBarActivity implements
                 //Separate addition and subtraction (just like addition actually) of different terms
                 n = instring.indexOf("&");
                 if (n == -1) {
-                    n = instring.length() - 1;
+                    n = instring.length()-1;
                     InTerms = false;
                 }
 
+                //Parse the coefficient
                 String tmp = instring.substring(0, n + 1);
                 instring = instring.substring(n + 1);
                 Term myTerm = new Term();
                 boolean done = false;
-                int pos = tmp.length() - 1;
+                int pos = tmp.length()-1;
                 for (int k = 0; k < 3; k++) {
                     int temp = tmp.indexOf(preSet[k]);
                     if (temp <= pos && temp != -1) {
@@ -540,7 +526,16 @@ public class ZapActivity extends ActionBarActivity implements
                     }
                 }
                 if (done) {
-                    myTerm.number[0] = Integer.valueOf(tmp.substring(0, pos));
+                    //Check if coefficient is implicitly 1
+                    if (pos!=0) {
+                        try {
+                            myTerm.number[0] = Integer.valueOf(tmp.substring(0, pos));
+                        }catch(Exception e){
+                            myTerm.number[0] = Integer.valueOf(tmp.substring(0, pos)+"1");
+                        }
+                    }else{
+                        myTerm.number[0] = 1;
+                    }
                 } else {
                     myTerm.number[0] = Integer.valueOf(tmp);
                 }
@@ -590,6 +585,7 @@ public class ZapActivity extends ActionBarActivity implements
             }
             return myTerms;
         }catch(Exception e){
+            e.printStackTrace();
             Toast.makeText(context,"Opps~ Unresolvable error encountered in Input: "+org+"\nI'm Sorry ;("+"\nPlease consider reading the instruction or giving us comment!", Toast.LENGTH_LONG).show();
             return new Terms();
         }
