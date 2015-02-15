@@ -169,7 +169,7 @@ public class ZapActivity extends ActionBarActivity implements
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_zap, container,false);
-			//Keep record of current section number.. Kind of dumb?
+			//Keep track of current section number.. Kind of dumb?
 			SECTION_NUMBER++;
 			
 			final Button det = (Button) rootView.findViewById(R.id.detbutton);
